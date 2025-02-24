@@ -12,8 +12,8 @@ Cronfig is a Bash script designed to enhance your command-line efficiency by add
 
 ## 🔧 Prerequisites
 
-- 🐧 **Operating System**: Debian-based Linux distributions (Ubuntu, Debian, etc.)
-- 🖥️ **Shell**: Bash (must be installed)
+-  **Operating System**: Debian-based Linux distributions (Ubuntu, Debian, etc.)
+-  **Shell**: Bash (must be installed)
 
 ## 📥 Installation
 
@@ -23,7 +23,7 @@ Run the following command to **download, give execution permissions, and execute
 curl -sSLo cronfig_init.sh https://raw.githubusercontent.com/ronthesoul/Cronfig/main/cronfig_init.sh && chmod +x cronfig_init.sh && ./cronfig_init.sh
 ```
 
-Now you can use the new aliases immediately! 🚀🎉
+Now you can use the new aliases immediately! 
 
 ## 👤 Author
 
