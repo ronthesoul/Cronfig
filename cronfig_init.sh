@@ -27,9 +27,30 @@ echo "alias myip='curl ifconfig.me'" >> ~/.bashrc
 echo "alias pingg='ping google.com -c 5'" >> ~/.bashrc
 echo "alias ports='netstat -tulnp'" >> ~/.bashrc
 
+#Git 
+echo "alias gl='git log --oneline --graph --decorate --all'" >> ~/.bashrc
+echo "alias gr='git remote -v'" >> ~/.bashrc
+echo "alias gpf='git fetch origin && git pull --rebase'" >> ~/.bashrc
 
 
-source ~/.bashrc
+#Add git branch to PS1
+#sed -i "s|PS1='${debian_chroot:+(\$debian_chroot)}\\\[\\033\[01;32m\\\]\\u@\\h\\\[\\033\[00m\\\]:\\\[\\033\[01;34m\\\]\\w\\\[\\033\[00m\\\]\\$ '|PS1='\[\e]0;\u@\h: \w\a\]${debian_chroot:+(\$debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\[\033[01;33m\]$(git rev-parse --abbrev-ref HEAD 2>/dev/null | sed \"s/\(.*\)/ [\1]/\")\[\033[00m\]\$ '|g" ~/.bashrc
 
-
-
+#Functions
+cat << 'EOF' >> ~/.bashrc
+change_git_repo() {
+    github_user=$1
+    github_repo=$2
+    if [[ $# -ne 2 || -z "$github_user" || -z "$github_repo" ]]; then
+        echo "Usage: change_git_repo <github_user> <github_repo>"
+        return 1
+    fi
+    if git remote add origin git@github.com:$github_user/$github_repo.git; then
+        echo "Changed the pointer to $github_user/$github_repo"
+        return 0
+    else
+        echo "Failed to add a pointer"
+        return 1
+    fi
+}
+EOF
