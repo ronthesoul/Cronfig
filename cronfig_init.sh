@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+#########################################
+#Developed by: Ron Negrov
+#Purpose: A script that adds all my required features to bashrc
+#Date: 24.2.2025
+#Version: 0.0.1
+##########################################
 
 #cd aliases
 echo "alias ..='cd ..'" >> ~/.bashrc
