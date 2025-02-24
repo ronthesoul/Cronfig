@@ -1,0 +1,2 @@
+# Cronfig
+configuration bashrc script
