@@ -22,6 +22,11 @@ Run the following command to **download, give execution permissions, and execute
 ```bash
 curl -sSLo cronfig_init.sh https://raw.githubusercontent.com/ronthesoul/Cronfig/main/cronfig_init.sh && chmod +x cronfig_init.sh && ./cronfig_init.sh
 ```
+And then source your bashrc file
+
+```bash
+source ~/.bashrc
+```
 
 Now you can use the new aliases immediately! 
 
