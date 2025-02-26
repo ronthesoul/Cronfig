@@ -35,7 +35,7 @@ echo "alias space='du -sh *'" >> ~/.bashrc
 echo "alias bigfiles='find . -type f -exec du -h {} + | sort -rh | head -10'" >> ~/.bashrc
 
 #Networking
-echo "alias myip='curl ifconfig.me'" >> ~/.bashrc
+echo "alias myip='curl ifconfig.me && echo ""'" >> ~/.bashrc
 echo "alias pingg='ping google.com -c 5'" >> ~/.bashrc
 echo "alias ports='netstat -tulnp'" >> ~/.bashrc
 echo "alias ipc='ip -br -c  addr'" >> ~/.bashrc
