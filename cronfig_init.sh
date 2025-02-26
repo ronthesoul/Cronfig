@@ -49,6 +49,14 @@ echo "alias gpf='git fetch origin && git pull --rebase'" >> ~/.bashrc
 echo "alias gp='git push -u'" >> ~/.bashrc
 echo "alias gitcon='ssh -T git@github.com'" >> ~/.bashrc
 
+#nginx commands
+echo "alias nxs='service nginx status'" >> ~/.bashrc
+echo "alias nxr='service nginx restart'" >> ~/.bashrc
+echo "alias nxstart='service nginx start'" >> ~/.bashrc
+echo "alias nxstop='service nginx stop'" >> ~/.bashrc
+
+
+
 
 #Vim configs
 
