@@ -3,14 +3,21 @@
 #Developed by: Ron Negrov
 #Purpose: A script that adds all my required features to bashrc
 #Date: 24.2.2025
-#Version: 0.0.3
+#Version: 0.0.4
 ##########################################
 
-#cd aliases
+#Adds my custom PS1 to bashrc
+PS1_VALUE='PS1='\''\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\[\033[01;33m\]$(git rev-parse --abbrev-ref HEAD 2>/dev/null | sed "s/\(.*\)/ [\1]/")\[\033[00m\]\n$ '\'''
+echo "$PS1_VALUE" >> ~/.bashrc
+
+
+#bin aliases
 echo "alias ..='cd ..'" >> ~/.bashrc
 echo "alias ...='cd ../..'" >> ~/.bashrc
 echo "alias ....='cd ../../..'" >> ~/.bashrc
 echo "alias home='cd ~'" >> ~/.bashrc
+echo "alias cp='cp -v'" >> ~/.bashrc
+echo "alias mv='mv -v'" >> ~/.bashrc
 
 #Memory managment
 echo "alias mem='free -m -l -t'" >> ~/.bashrc
@@ -36,8 +43,9 @@ echo "alias gr='git remote -v'" >> ~/.bashrc
 echo "alias gpf='git fetch origin && git pull --rebase'" >> ~/.bashrc
 echo "alias gitcon='ssh -T git@github.com'" >> ~/.bashrc
 
-#Add git branch to PS1
-#sed -i "s|PS1='${debian_chroot:+(\$debian_chroot)}\\\[\\033\[01;32m\\\]\\u@\\h\\\[\\033\[00m\\\]:\\\[\\033\[01;34m\\\]\\w\\\[\\033\[00m\\\]\\$ '|PS1='\[\e]0;\u@\h: \w\a\]${debian_chroot:+(\$debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\[\033[01;33m\]$(git rev-parse --abbrev-ref HEAD 2>/dev/null | sed \"s/\(.*\)/ [\1]/\")\[\033[00m\]\$ '|g" ~/.bashrc
+
+
+
 
 #Functions
 cat << 'EOF' >> ~/.bashrc
