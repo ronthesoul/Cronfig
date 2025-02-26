@@ -41,6 +41,7 @@ echo "alias ipn='cat /etc/resolv.conf | grep nameserver'" >> ~/.bashrc
 echo "alias gl='git log --oneline --graph --decorate --all'" >> ~/.bashrc
 echo "alias gr='git remote -v'" >> ~/.bashrc
 echo "alias gpf='git fetch origin && git pull --rebase'" >> ~/.bashrc
+echo "alias gp='git push -u'" >> ~/.bashrc
 echo "alias gitcon='ssh -T git@github.com'" >> ~/.bashrc
 
 
