@@ -32,7 +32,6 @@ echo "alias topcpu='ps aux --sort=-%cpu | head -10''" >> ~/.bashrc
 #Disk space
 echo "alias disk='df -h'" >> ~/.bashrc
 echo "alias space='du -sh *'" >> ~/.bashrc
-echo "alias bigfiles='find . -type f -exec du -h {} + | sort -rh | head -10'" >> ~/.bashrc
 
 #Networking
 echo "alias myip='curl ifconfig.me && echo ""'" >> ~/.bashrc
