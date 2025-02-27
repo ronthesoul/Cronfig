@@ -44,7 +44,7 @@ echo "alias disk='df -h'" >> ~/.bashrc
 echo "alias space='du -sh *'" >> ~/.bashrc
 
 #Networking
-echo "alias myip='curl ifconfig.me && echo ""'" >> ~/.bashrc
+echo "alias myip='curl ifconfig.me'" >> ~/.bashrc
 echo "alias pingg='ping google.com -c 5'" >> ~/.bashrc
 echo "alias ports='netstat -tulnp'" >> ~/.bashrc
 echo "alias ipc='ip -br -c  addr'" >> ~/.bashrc
