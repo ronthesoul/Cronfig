@@ -37,7 +37,7 @@ echo "alias brcs='source ~/.bashrc'" >> ~/.bashrc
 #Memory managment
 echo "alias mem='free -m -l -t'" >> ~/.bashrc
 echo "alias topmem='ps aux --sort=-%mem | head -10'" >> ~/.bashrc
-echo "alias topcpu='ps aux --sort=-%cpu | head -10''" >> ~/.bashrc
+echo "alias topcpu='ps aux --sort=-%cpu | head -10'" >> ~/.bashrc
 
 #Disk space
 echo "alias disk='df -h'" >> ~/.bashrc
@@ -152,20 +152,4 @@ echo 'source ~/.base16config/base16-shell/scripts/base16-default-dark.sh' >> ~/.
 
 
 #Functions
-cat << 'EOF' >> ~/.bashrc
-change_git_repo() {
-    github_user=$1
-    github_repo=$2
-    if [[ $# -ne 2 || -z "$github_user" || -z "$github_repo" ]]; then
-        echo "Usage: change_git_repo <github_user> <github_repo>"
-        return 1
-    fi
-    if git remote add origin git@github.com:$github_user/$github_repo.git; then
-        echo "Changed the pointer to $github_user/$github_repo"
-        return 0
-    else
-        echo "Failed to add a pointer"
-        return 1
-    fi
-}
-EOF
+
