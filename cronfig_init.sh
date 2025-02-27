@@ -64,9 +64,9 @@ echo "alias gs='git status'" >> ~/.bashrc
 
 #nginx commands
 echo "alias nxs='service nginx status'" >> ~/.bashrc
-echo "alias nxr='service nginx restart'" >> ~/.bashrc
-echo "alias nxstart='service nginx start'" >> ~/.bashrc
-echo "alias nxstop='service nginx stop'" >> ~/.bashrc
+echo "alias nxr='sudo service nginx restart'" >> ~/.bashrc
+echo "alias nxstart='sudo service nginx start'" >> ~/.bashrc
+echo "alias nxstop='sudo service nginx stop'" >> ~/.bashrc
 
 
 
