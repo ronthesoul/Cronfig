@@ -60,7 +60,7 @@ echo "alias gitcon='ssh -T git@github.com'" >> ~/.bashrc
 echo "alias gc='git commit'" >> ~/.bashrc
 echo "alias ga='git add'" >> ~/.bashrc
 echo "alias gb='git branch'" >> ~/.bashrc
-echo "alias gs='git status" >> ~/.bashrc
+echo "alias gs='git status'" >> ~/.bashrc
 
 #nginx commands
 echo "alias nxs='service nginx status'" >> ~/.bashrc
