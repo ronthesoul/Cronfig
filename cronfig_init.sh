@@ -18,12 +18,10 @@ ______ .______        ______   .__   __.  _______  __    _______
 EOF
                                                                    
 
+
 #Adds my custom PS1 to bashrc
 PS1_VALUE='PS1='\''\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\[\033[01;33m\]$(git rev-parse --abbrev-ref HEAD 2>/dev/null | sed "s/\(.*\)/ [\1]/")\[\033[00m\]\n$ '\'''
 echo "$PS1_VALUE" >> ~/.bashrc
-
-#System configs
-echo "Lazarus" > /etc/hostname 2>&1
 
 
 
@@ -98,25 +96,37 @@ set ruler
 set showcmd
 set wildmenu
 set showmatch
+let mapleader=" "
 
 syntax on
 set completeopt=menuone,noselect
 
 " Save and Quit shortcuts
-nnoremap <C-s> :w<CR>
-nnoremap <C-q> :wq<CR>
+nnoremap <leader>s :w<CR>      " Save file
+nnoremap <leader>q :wq<CR>     " Save and quit
+nnoremap <leader>x :q!<CR>     " Quit without saving
 
 " Copy Paste shortcuts
+nnoremap <leader>c "+y   " Copy in normal mode
+vnoremap <leader>c "+y   " Copy in visual mode
 vnoremap <C-c> "+y
+nnoremap <C-c> "+y
+
 nnoremap <C-p> "+p
 inoremap <C-p> <C-r>+
 cnoremap <C-p> <C-r>+
 tnoremap <C-p> <C-r>+
+nnoremap <leader>v "+p   " Paste after cursor
+nnoremap <leader>V "+P   " Paste before cursor
+inoremap <leader>v <C-r>+   " Paste in insert mode
+cnoremap <leader>v <C-r>+   " Paste in command mode
+tnoremap <leader>v <C-r>+   " Paste in terminal mode
 
 " Map ctrl left and right to move between tabs
-nnoremap <C-Right> :tabnext<CR>
-nnoremap <C-Left> :tabprev<CR>
-
+nnoremap <C-S-Right> :tabnext<CR>
+nnoremap <C-S-Left> :tabprev<CR>
+nnoremap <C-t> :vertical terminal<CR>
+nnoremap <leader>r :%s//g<Left><Left>
 
 set termguicolors
 colorscheme github
