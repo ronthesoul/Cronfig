@@ -3,7 +3,7 @@
 #Developed by: Ron Negrov
 #Purpose: A script that adds all my required features to bashrc
 #Date: 24.2.2025
-#Version: 0.0.4
+#Version: 0.0.9
 ##########################################
 
 cat << 'EOF' 
@@ -133,7 +133,7 @@ nnoremap <C-t> :vertical terminal<CR>
 nnoremap <leader>r :%s//g<Left><Left>
 
 set termguicolors
-colorscheme github
+colorscheme molokai
 EOF
 
 #Changing background color
@@ -147,7 +147,7 @@ BASE16_SHELL="$HOME/.base16config/base16-shell/"
         eval "$("$BASE16_SHELL/profile_helper.sh")" 
 
 EOF
-chmod +x ~/.base16config/base16-shell/base16-default-dark.sh
+chmod +x ~/.base16config/base16-shell/scripts/base16-default-dark.sh
 echo 'source ~/.base16config/base16-shell/scripts/base16-default-dark.sh' >> ~/.bashrc
 
 
