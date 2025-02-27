@@ -57,6 +57,10 @@ echo "alias gr='git remote -v'" >> ~/.bashrc
 echo "alias gpf='git fetch origin && git pull --rebase'" >> ~/.bashrc
 echo "alias gp='git push -u'" >> ~/.bashrc
 echo "alias gitcon='ssh -T git@github.com'" >> ~/.bashrc
+echo "alias gc='git commit'" >> ~/.bashrc
+echo "alias ga='git add'" >> ~/.bashrc
+echo "alias gb='git branch'" >> ~/.bashrc
+echo "alias gs='git status" >> ~/.bashrc
 
 #nginx commands
 echo "alias nxs='service nginx status'" >> ~/.bashrc
@@ -131,6 +135,20 @@ nnoremap <leader>r :%s//g<Left><Left>
 set termguicolors
 colorscheme github
 EOF
+
+#Changing background color
+git clone https://github.com/chriskempson/base16-shell.git ~/.base16config/base16-shell
+
+cat << 'EOF' >> ~/.bashrc
+# Base16 Shell
+BASE16_SHELL="$HOME/.base16config/base16-shell/"
+[ -n "$PS1" ] && \
+    [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
+        eval "$("$BASE16_SHELL/profile_helper.sh")" 
+
+EOF
+chmod +x ~/.base16config/base16-shell/base16-default-dark.sh
+echo 'source ~/.base16config/base16-shell/scripts/base16-default-dark.sh' >> ~/.bashrc
 
 
 #Functions
