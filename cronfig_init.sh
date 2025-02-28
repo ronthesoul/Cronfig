@@ -46,7 +46,7 @@ echo "alias space='du -sh *'" >> ~/.bashrc
 #Networking
 echo "alias myip='curl ifconfig.me'" >> ~/.bashrc
 echo "alias pingg='ping google.com -c 5'" >> ~/.bashrc
-echo "alias ports='netstat -tulnp'" >> ~/.bashrc
+echo "alias ports='ss -tulpn'" >> ~/.bashrc
 echo "alias ipc='ip -br -c  addr'" >> ~/.bashrc
 echo "alias ipd='ip route show default'" >> ~/.bashrc
 echo "alias ipn='cat /etc/resolv.conf | grep nameserver'" >> ~/.bashrc
