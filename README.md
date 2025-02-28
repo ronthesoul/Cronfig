@@ -27,8 +27,12 @@ And then source your bashrc file
 ```bash
 source ~/.bashrc
 ```
-
 Now you can use the new aliases immediately! 
+
+To install all the vim plugins, go to a vim editor and write the following command:
+```bash
+:PlugInstall
+```
 
 ## 👤 Author
 
