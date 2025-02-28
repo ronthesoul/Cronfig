@@ -86,6 +86,9 @@ echo 'export EDITOR=vim' >> ~/.bashrc
 mkdir -p ~/.vim/colors
 curl -o ~/.vim/colors/molokai.vim https://raw.githubusercontent.com/tomasr/molokai/master/colors/molokai.vim
 
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
 cat << 'EOF' >> ~/.vimrc
 set number
 set mouse=a
@@ -131,6 +134,22 @@ nnoremap <C-S-Right> :tabnext<CR>
 nnoremap <C-S-Left> :tabprev<CR>
 nnoremap <C-t> :vertical terminal<CR>
 nnoremap <leader>r :%s//g<Left><Left>
+
+"  Adding plugins 
+call plug#begin('~/.vim/plugged')
+Plug 'tpope/vim-fugitive'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'preservim/nerdtree'
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'sheerun/vim-polyglot'
+Plug 'vim-test/vim-test'
+Plug 'puremourning/vimspector'
+Plug 'mbbill/undotree' 
+
+call plug#end()
 
 set termguicolors
 colorscheme molokai
