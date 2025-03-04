@@ -67,7 +67,7 @@ echo "alias nxs='service nginx status'" >> ~/.bashrc
 echo "alias nxr='sudo service nginx restart'" >> ~/.bashrc
 echo "alias nxstart='sudo service nginx start'" >> ~/.bashrc
 echo "alias nxstop='sudo service nginx stop'" >> ~/.bashrc
-
+echo "alias cdse = 'cd /etc/nginx/sites-enabled'" >> ~/.bashrc
 
 
 
