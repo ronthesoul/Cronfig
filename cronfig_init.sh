@@ -67,7 +67,7 @@ echo "alias nxs='service nginx status'" >> ~/.bashrc
 echo "alias nxr='sudo service nginx restart'" >> ~/.bashrc
 echo "alias nxstart='sudo service nginx start'" >> ~/.bashrc
 echo "alias nxstop='sudo service nginx stop'" >> ~/.bashrc
-echo "alias cdse = 'cd /etc/nginx/sites-enabled'" >> ~/.bashrc
+echo "alias cdse='cd /etc/nginx/sites-enabled'" >> ~/.bashrc
 
 
 
@@ -143,7 +143,6 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'preservim/nerdtree'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'sheerun/vim-polyglot'
 Plug 'vim-test/vim-test'
 Plug 'puremourning/vimspector'
