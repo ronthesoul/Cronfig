@@ -170,4 +170,12 @@ echo 'source ~/.base16config/base16-shell/scripts/base16-default-dark.sh' >> ~/.
 
 
 #Functions
+cat << 'EOF' >> ~/.bashrc 
+function change_repo (){
+repo_profile=$1
+repo_name=$2
 
+git remote add origin git@github.com:$repo_name/$repo_name
+git remote set-url origin git@github.com:$repo_profile/$repo_name
+}
+EOF
