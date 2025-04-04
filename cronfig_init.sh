@@ -26,13 +26,14 @@ echo "$PS1_VALUE" >> ~/.bashrc
 
 
 #bin aliases
-echo "alias ..='cd ..'" >> ~/.bashrc
-echo "alias ...='cd ../..'" >> ~/.bashrc
-echo "alias ....='cd ../../..'" >> ~/.bashrc
-echo "alias home='cd ~'" >> ~/.bashrc
+echo "alias ..='cd .. && ls'" >> ~/.bashrc
+echo "alias ...='cd ../.. && ls'" >> ~/.bashrc
+echo "alias ....='cd ../../.. && ls'" >> ~/.bashrc
+echo "alias home='cd ~ && ls'" >> ~/.bashrc
 echo "alias cp='cp -v'" >> ~/.bashrc
 echo "alias mv='mv -v'" >> ~/.bashrc
 echo "alias brcs='source ~/.bashrc'" >> ~/.bashrc
+echo "alias vbr='vim ~/.bashrc'" >> ~/.bashrc
 
 #Memory managment
 echo "alias mem='free -m -l -t'" >> ~/.bashrc
@@ -194,4 +195,5 @@ function cl (){
 cd $1
 ls
 }
+EOF
 
