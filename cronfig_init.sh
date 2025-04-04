@@ -179,3 +179,19 @@ git remote add origin git@github.com:$repo_name/$repo_name
 git remote set-url origin git@github.com:$repo_profile/$repo_name
 }
 EOF
+
+
+cat << EOF >> ~/.bashrc
+if [[ ! -e ~/.bashrc_backup ]]; then
+    mkdir -p ~/.bashrc_backup
+fi
+
+cp ~/.bashrc ~/.bashrc_backup/bashrc
+EOF
+
+cat << EOF >> ~/.bashrc
+function cl (){
+cd $1
+ls
+}
+
