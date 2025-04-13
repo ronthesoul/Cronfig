@@ -70,7 +70,48 @@ echo "alias nxstart='sudo service nginx start'" >> ~/.bashrc
 echo "alias nxstop='sudo service nginx stop'" >> ~/.bashrc
 echo "alias cdse='cd /etc/nginx/sites-enabled'" >> ~/.bashrc
 
+#docker commands
+echo "alias drad='docker rm $(docker ps -a -q -f "status=exited")'" >> ~/.bashrc
+echo "alias drld='docker ps -a -q -f "status=exited"'" >> ~/.bashrc
+echo "alias dclean='docker system prune -f'" >> ~/.bashrc
+echo "alias dstopall='docker stop $(docker ps -q)'" >> ~/.bashrc
+echo "alias dps='docker ps'" >> ~/.bashrc
 
+cat << 'EOF' >> ~/.bashrc
+function get_container_ip(){
+docker inspect $1 | jq -r '.[0].NetworkSettings.Networks.bridge.IPAddress'
+}
+EOF
+
+cat << 'EOF' >> ~/.bashrc
+function create_sandbox(){
+malware_volume='/var/sandbox/malware'
+
+if [[ ! -e $malware_volume ]]; then
+mkdir -p $malware_volume
+fi
+
+docker run -it \
+  --rm \
+  --cap-drop=ALL \
+  --security-opt=no-new-privileges \
+  --read-only \
+  --network none \
+  -v $malware_volume:/malware:ro \
+  $1
+}
+EOF
+cat << 'EOF' >> ~/.bashrc
+function denter(){
+docker exec -it "$1" sh
+}
+EOF
+cat << 'EOF' >> ~/.bashrc
+function dpurge(){
+    docker stop $(docker ps -q)
+    docker rm $(docker ps -a -q -f "status=exited")
+}
+EOF
 
 #Vim configs
 
