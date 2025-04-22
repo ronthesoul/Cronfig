@@ -238,3 +238,19 @@ ls
 }
 EOF
 
+cat << 'EOF' >> ~/.bashrc 
+function brcs () { 
+    local backup_dir="$HOME/.bashrc_backup"
+    mkdir -p "$backup_dir"
+    if [[ -f "$backup_dir/bashrc_prev" ]]; then
+        mv "$backup_dir/bashrc_prev" "$backup_dir/bashrc_prev2"
+    fi
+
+    if [[ -f "$HOME/.bashrc" ]]; then
+        cp "$HOME/.bashrc" "$backup_dir/bashrc_prev"
+    fi
+
+    source "$HOME/.bashrc"
+}
+EOF
+
