@@ -103,7 +103,7 @@ docker run -it \
 EOF
 cat << 'EOF' >> ~/.bashrc
 function denter(){
-docker exec -it "$1" sh
+docker exec -it "$1" /bin/bash
 }
 EOF
 cat << 'EOF' >> ~/.bashrc
