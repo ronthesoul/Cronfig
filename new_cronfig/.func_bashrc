@@ -1,0 +1,116 @@
+
+function cl (){
+cd $1
+ls
+}
+
+function brcs () { 
+    local backup_dir="$HOME/.bashrc_backup"
+    mkdir -p "$backup_dir" >/dev/null 2>&1
+
+    if [[ -f "$backup_dir/bashrc_prev" ]]; then
+        mv "$backup_dir/bashrc_prev" "$backup_dir/bashrc_prev2" >/dev/null 2>&1
+    fi
+
+    if [[ -f "$HOME/.bashrc" ]]; then
+        cp "$HOME/.bashrc" "$backup_dir/bashrc_prev" >/dev/null 2>&1
+    fi
+
+    source "$HOME/.bashrc" >/dev/null 2>&1
+}
+
+
+
+
+function get_container_ip(){
+docker inspect $1 | jq -r '.[0].NetworkSettings.Networks.bridge.IPAddress'
+}
+function create_sandbox(){
+malware_volume='/var/sandbox/malware'
+
+if [[ ! -e $malware_volume ]]; then
+sudo mkdir -p $malware_volume
+fi
+
+docker run -it \
+  --rm \
+  --cap-drop=ALL \
+  --security-opt=no-new-privileges \
+  --read-only \
+  --network none \
+  -v $malware_volume:/malware:ro \
+  $1
+}
+function denter(){
+docker exec -it "$1" /bin/bash
+}
+function dpurge(){
+    docker stop $(docker ps -q)
+    docker rm $(docker ps -a -q -f "status=exited")
+}
+
+function create_gh_repo () {
+  local repo_name="$1"
+  local description="$2"
+  local visibility="${3:-private}"
+
+  if ! command -v gh >/dev/null 2>&1; then
+    echo "[INFO] GitHub CLI (gh) not found. Installing..."
+
+    if [[ -f /etc/debian_version ]]; then
+      sudo apt install -y gh
+    elif [[ "$OSTYPE" == "darwin"* ]]; then
+      brew install gh
+    else
+      echo "[ERROR] Unsupported OS. Please install gh manually."
+      return 1
+    fi
+  fi
+
+  if ! gh auth status >/dev/null 2>&1; then
+    echo "[INFO] Authenticating with GitHub..."
+    gh auth login
+  fi
+
+  echo "[INFO] Creating GitHub repository: $repo_name"
+  gh repo create "$repo_name" --description "$description" --"$visibility" --confirm
+}
+
+function delete_gh_repo() {
+  local repo_name="$1"
+  local owner="${2:-$(gh api user | jq -r .login)}"  # default: your username
+
+  if [[ -z "$repo_name" ]]; then
+    echo "[ERROR] Repo name is required."
+    return 1
+  fi
+
+  if ! command -v gh >/dev/null 2>&1; then
+    echo "[ERROR] GitHub CLI (gh) not found."
+    return 1
+  fi
+
+  if ! gh auth status >/dev/null 2>&1; then
+    echo "[INFO] Authenticating with GitHub..."
+    gh auth login
+  fi
+
+  echo "[WARNING] Deleting repo: $owner/$repo_name"
+  read -p "Are you sure? Type 'yes' to continue: " confirm
+  if [[ "$confirm" != "yes" ]]; then
+    echo "[INFO] Aborted."
+    return 0
+  fi
+
+  gh api --method DELETE "repos/$owner/$repo_name"
+  echo "[INFO] Repository deleted: $owner/$repo_name"
+}
+
+
+function change_repo (){
+repo_profile=$1
+repo_name=$2
+
+git remote add origin git@github.com:$repo_name/$repo_name
+git remote set-url origin git@github.com:$repo_profile/$repo_name
+}
