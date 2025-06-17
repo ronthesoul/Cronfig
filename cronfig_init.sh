@@ -79,7 +79,7 @@ echo "alias dps='docker ps'" >> ~/.bashrc
 
 cat << 'EOF' >> ~/.bashrc
 function get_container_ip(){
-docker inspect $1 | jq -r '.[0].NetworkSettings.Networks.bridge.IPAddress'
+docker inspect $1 | jq -r '.[0].NetworkSettings.Networks.$1.IPAddress'
 }
 EOF
 
