@@ -122,7 +122,7 @@ chmod +x ~/.base16config/base16-shell/scripts/base16-default-dark.sh
 echo 'source ~/.base16config/base16-shell/scripts/base16-default-dark.sh' >> ~/.bashrc
 
 
-curl -o .alias_bashrc https://raw.githubusercontent.com/ronthesoul/Cronfig/main/new_config/.alias_bashrc
-curl -o .func_bashrc https://raw.githubusercontent.com/ronthesoul/Cronfig/main/new_config/.func_bashrc
-source "$HOME/.alias_bashrc"
-source "$HOME/.func_bashrc"
+curl -o ~/.alias_bashrc https://raw.githubusercontent.com/ronthesoul/Cronfig/main/new_config/.alias_bashrc
+curl -o ~/.func_bashrc https://raw.githubusercontent.com/ronthesoul/Cronfig/main/new_config/.func_bashrc
+echo '"source "$HOME/.alias_bashrc"' >> ~/.bashrc
+echo '"source "$HOME/.func_bashrc"' >> ~/.bashrc 
