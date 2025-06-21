@@ -114,3 +114,13 @@ repo_name=$2
 git remote add origin git@github.com:$repo_name/$repo_name
 git remote set-url origin git@github.com:$repo_profile/$repo_name
 }
+
+
+
+function synconfig (){
+mkdir -p /tmp/tmp_cronfig
+curl -o /tmp/tmp_cronfig/.alias_bashrc https://raw.githubusercontent.com/ronthesoul/Cronfig/main/new_cronfig/.alias_bashrc
+curl -o /tmp/tmp_cronfig/.func_bashrc https://raw.githubusercontent.com/ronthesoul/Cronfig/main/new_cronfig/.func_bashrc
+cp /tmp/tmp_cronfig/.alias_bashrc /tmp/tmp_cronfig/.func_bashrc "$HOME/"
+rm -rf /tmp/tmp_cronfig
+}
