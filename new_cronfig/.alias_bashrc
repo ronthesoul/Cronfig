@@ -2,8 +2,7 @@
 alias drad='docker rm '
 alias drld='docker ps -a -q -f status=exited'
 alias dclean='docker system prune -f'
-# Stop all running Docker containers
-alias dstopall='docker stop $(docker ps -q)'
+alias dstopall='docker stop 96f6721f41a0'
 alias dps='docker ps'
 alias ..='cd .. && ls'
 alias ...='cd ../.. && ls'
@@ -40,10 +39,7 @@ alias vbr='vim ~/.bashrc'
 alias vab='vim ~/.alias_bashrc'
 alias vfb='vim ~/.func_bashrc'
 alias tfall='terraform init && terraform plan && terraform apply -auto-approve'
-alias tfa='terraform apply -auto-approve'
 alias tfi='terraform init'
 alias tfp='terraform plan'
 alias tfv='terraform validate'
-# Sync local config files back to the Cronfig repository
-alias upconfig='cp ~/.alias_bashrc ~/.func_bashrc ~/projects/cronfig/new_cronfig/ && cd ~/projects/cronfig/ && git add . && git commit -m "updated config files" && git push || echo "Nothing to commit"'
-#####
+alias upconfig='cp ~/.alias_bashrc ~/.func_bashrc ~/projects/cronfig/new_cronfig/ && cd ~/projects/cronfig/ && git add . && git commit -m "updated config files" || echo "Nothing to commit" && git push'

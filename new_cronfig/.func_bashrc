@@ -116,11 +116,28 @@ git remote set-url origin git@github.com:$repo_profile/$repo_name
 }
 
 
+function tfa () {
+  if terraform apply -auto-approve; then
+    message="✅ Terraform apply completed successfully"
+  else
+    message="❌ Terraform apply failed"
+  fi
 
-function synconfig (){
-mkdir -p /tmp/tmp_cronfig
-curl -o /tmp/tmp_cronfig/.alias_bashrc https://raw.githubusercontent.com/ronthesoul/Cronfig/main/new_cronfig/.alias_bashrc
-curl -o /tmp/tmp_cronfig/.func_bashrc https://raw.githubusercontent.com/ronthesoul/Cronfig/main/new_cronfig/.func_bashrc
-cp /tmp/tmp_cronfig/.alias_bashrc /tmp/tmp_cronfig/.func_bashrc "$HOME/"
-rm -rf /tmp/tmp_cronfig
+  payload=$(jq -n --arg msg "$message" '{text: $msg}')
+
+  curl -X POST -H 'Content-type: application/json' \
+       --data "$payload" \
+       https://hooks.slack.com/services/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
+}
+
+
+function tfd (){
+if terraform destroy -auto-approve; then
+  message="✅ Terraform destroy completed successfully"
+else
+  message="❌ Terraform destroy failed"
+fi
+curl -X POST -H 'Content-type: application/json' \
+     --data "{\"text\": \"${message}\"}" \
+     https://hooks.slack.com/services/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
 }
