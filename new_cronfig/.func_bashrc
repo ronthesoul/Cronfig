@@ -115,7 +115,6 @@ git remote add origin git@github.com:$repo_name/$repo_name
 git remote set-url origin git@github.com:$repo_profile/$repo_name
 }
 
-
 function tfa () {
   if terraform apply -auto-approve; then
     message="✅ Terraform apply completed successfully"
@@ -127,17 +126,21 @@ function tfa () {
 
   curl -X POST -H 'Content-type: application/json' \
        --data "$payload" \
-       https://hooks.slack.com/services/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
+       "$SLACK_WEBHOOK_URL"
 }
 
 
-function tfd (){
-if terraform destroy -auto-approve; then
-  message="✅ Terraform destroy completed successfully"
-else
-  message="❌ Terraform destroy failed"
-fi
-curl -X POST -H 'Content-type: application/json' \
-     --data "{\"text\": \"${message}\"}" \
-     https://hooks.slack.com/services/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
+function tfd () {
+  if terraform destroy -auto-approve; then
+    message="✅ Terraform destroy completed successfully"
+  else
+    message="❌ Terraform destroy failed"
+  fi
+
+  payload=$(jq -n --arg msg "$message" '{text: $msg}')
+
+  curl -X POST -H 'Content-type: application/json' \
+       --data "$payload" \
+       "$SLACK_WEBHOOK_URL"
 }
+
