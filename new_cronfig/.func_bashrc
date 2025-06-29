@@ -144,3 +144,35 @@ function tfd () {
        "$SLACK_WEBHOOK_URL"
 }
 
+function tfall () {
+  terraform init
+  if [ $? -ne 0 ]; then
+    message="❌ Terraform init failed"
+  else
+    terraform plan
+    if [ $? -ne 0 ]; then
+      message="❌ Terraform plan failed"
+    else
+      if terraform apply -auto-approve; then
+        message="✅ Terraform apply completed successfully"
+      else
+        message="❌ Terraform apply failed"
+      fi
+    fi
+  fi
+
+  payload=$(jq -n --arg msg "$message" '{text: $msg}')
+  curl -X POST -H 'Content-type: application/json' \
+       --data "$payload" \
+       "$SLACK_WEBHOOK_URL"
+}
+
+
+trap 'PREV_COMMAND=$THIS_COMMAND; THIS_COMMAND=$BASH_COMMAND' DEBUG
+nots() {
+  local status=$?
+  local msg="$PREV_COMMAND"
+  curl -X POST -H "Content-type: application/json" \
+    --data "{\"text\":\"✅ Command finished: $msg (Exit: $status)\"}" \
+    "$NOTS_SLACK_URL"
+}
