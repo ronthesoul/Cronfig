@@ -33,10 +33,13 @@ jobs:
 
           if ! shellcheck --severity=error cronfig_init.sh; then
             $NOTIFY "Step - Shellcheck bash files ❌ Failed - cronfig_init.sh" $SLACK_WEBHOOK
-          elif ! shellcheck new_cronfig/.alias_bashrc; then
+            exit 1
+          elif ! shellcheck --severity=error new_cronfig/.alias_bashrc; then
             $NOTIFY "Step - Shellcheck bash files ❌ Failed - .alias_bashrc" $SLACK_WEBHOOK
-          elif ! shellcheck new_cronfig/.func_bashrc; then
+            exit 1
+          elif ! shellcheck --severity=error new_cronfig/.func_bashrc; then
             $NOTIFY "Step - Shellcheck bash files ❌ Failed - .func_bashrc" $SLACK_WEBHOOK
+            exit 1
           else
             $NOTIFY "Step - Shellcheck bash files ✅ Success" $SLACK_WEBHOOK
           fi
