@@ -1,0 +1,52 @@
+name: Test cronfig to see it has syntax errors
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+      NOTIFY: ".github/workflows/notify.sh"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Notify Start
+        run: |
+          chmod +x $NOTIFY
+          $NOTIFY "Starting ${{ github.event.repository.name }} Test - Commit: ${{ github.event.head_commit.message }}" $SLACK_WEBHOOK
+
+      - name: Install dependencies for testing
+        run: |
+          $NOTIFY "Starting Step - Install dependencies for testing" $SLACK_WEBHOOK
+          if sudo apt-get update && sudo apt-get install -y shellcheck; then
+            $NOTIFY "Step - Install dependencies for testing ✅ Success" $SLACK_WEBHOOK
+          else
+            $NOTIFY "Step - Install dependencies for testing ❌ Failed" $SLACK_WEBHOOK
+          fi
+
+      - name: Shellcheck bash files
+        run: |
+          cd $GITHUB_WORKSPACE
+          $NOTIFY "Starting Step - Shellcheck bash files" $SLACK_WEBHOOK
+
+          if ! shellcheck --severity=error cronfig_init.sh; then
+            $NOTIFY "Step - Shellcheck bash files ❌ Failed - cronfig_init.sh" $SLACK_WEBHOOK
+          elif ! shellcheck new_cronfig/.alias_bashrc; then
+            $NOTIFY "Step - Shellcheck bash files ❌ Failed - .alias_bashrc" $SLACK_WEBHOOK
+          elif ! shellcheck new_cronfig/.func_bashrc; then
+            $NOTIFY "Step - Shellcheck bash files ❌ Failed - .func_bashrc" $SLACK_WEBHOOK
+          else
+            $NOTIFY "Step - Shellcheck bash files ✅ Success" $SLACK_WEBHOOK
+          fi
+
+      - name: Final pipeline result
+        if: success()
+        run: |
+          $NOTIFY "🚀 Pipeline completed successfully!" $SLACK_WEBHOOK
+
+      - name: Final pipeline failure
+        if: failure()
+        run: |
+          $NOTIFY "🔥 Pipeline failed!" $SLACK_WEBHOOK
