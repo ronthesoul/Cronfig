@@ -1,4 +1,4 @@
-
+#!/bin/bash
 function cl (){
 cd $1
 ls
