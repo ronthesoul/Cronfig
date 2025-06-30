@@ -8,6 +8,7 @@ jobs:
     env:
       SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
       NOTIFY: ".github/workflows/notify.sh"
+
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -24,6 +25,7 @@ jobs:
             $NOTIFY "Step - Install dependencies for testing ✅ Success" $SLACK_WEBHOOK
           else
             $NOTIFY "Step - Install dependencies for testing ❌ Failed" $SLACK_WEBHOOK
+            exit 1
           fi
 
       - name: Shellcheck bash files
@@ -44,6 +46,17 @@ jobs:
             $NOTIFY "Step - Shellcheck bash files ✅ Success" $SLACK_WEBHOOK
           fi
 
+      - name: Test cronfig_init.sh execution
+        run: |
+          $NOTIFY "Starting Step - Execute cronfig_init.sh" $SLACK_WEBHOOK
+          chmod +x cronfig_init.sh
+          if ./cronfig_init.sh; then
+            $NOTIFY "Step - Execute cronfig_init.sh ✅ Success" $SLACK_WEBHOOK
+          else
+            $NOTIFY "Step - Execute cronfig_init.sh ❌ Failed" $SLACK_WEBHOOK
+            exit 1
+          fi
+
       - name: Final pipeline result
         if: success()
         run: |
@@ -53,5 +66,3 @@ jobs:
         if: failure()
         run: |
           $NOTIFY "🔥 Pipeline failed!" $SLACK_WEBHOOK
-
-##
