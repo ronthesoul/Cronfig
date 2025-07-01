@@ -191,6 +191,16 @@ function kube_expose_deployment() {
   echo "$name was exposed on port $port"
 }
 
+function kall() {
+echo "#####################Pods info#########################"
+kubectl get pod -o wide
+echo "#####################Nodes info########################"
+kubectl get node -o wide
+echo "#####################Service info######################"
+kubectl get svc -o wide
+echo "#####################Deployment info###################"
+kubectl get deployment -o wide
+}
 
 
 
