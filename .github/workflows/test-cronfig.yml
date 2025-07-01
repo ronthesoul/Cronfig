@@ -56,6 +56,16 @@ jobs:
             $NOTIFY "Step - Execute cronfig_init.sh ❌ Failed" $SLACK_WEBHOOK
             exit 1
           fi
+      - name: Test all loaded functions
+        run: |
+         $NOTIFY "Test all loaded functions" $SLACK_WEBHOOK
+          for func in $(declare -F | awk '{print $3}' | grep -v '^_'); do
+            if ! $func; then
+              $NOTIFY "Step - Test all loaded functions ❌ Failed - Responsible function: $func" $SLACK_WEBHOOK
+              exit 1
+            fi
+          done
+          $NOTIFY "Step - Test all loaded functions ✅ Success" $SLACK_WEBHOOK 
 
       - name: Final pipeline result
         if: success()
