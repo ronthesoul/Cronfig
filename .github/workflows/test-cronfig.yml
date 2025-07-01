@@ -59,6 +59,7 @@ jobs:
       - name: Test all loaded functions
         run: |
          $NOTIFY "Test all loaded functions" $SLACK_WEBHOOK
+         source new_cronfig/.func_bashrc
           for func in $(declare -F | awk '{print $3}' | grep -v '^_'); do
             if ! $func; then
               $NOTIFY "Step - Test all loaded functions ❌ Failed - Responsible function: $func" $SLACK_WEBHOOK
