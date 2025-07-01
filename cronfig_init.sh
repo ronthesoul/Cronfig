@@ -126,3 +126,4 @@ curl -o ~/.alias_bashrc https://raw.githubusercontent.com/ronthesoul/Cronfig/mai
 curl -o ~/.func_bashrc https://raw.githubusercontent.com/ronthesoul/Cronfig/main/new_cronfig/.func_bashrc
 echo 'source "$HOME/.alias_bashrc"' >> ~/.bashrc
 echo 'source "$HOME/.func_bashrc"' >> ~/.bashrc 
+#
