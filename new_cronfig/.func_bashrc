@@ -176,3 +176,28 @@ nots() {
     --data "{\"text\":\"✅ Command finished: $msg (Exit: $status)\"}" \
     "$NOTS_SLACK_URL"
 }
+
+function kube_cleanup() {
+  local name="$1"
+  kubectl delete deployment "$name" 2>/dev/null
+  kubectl delete service "$name" 2>/dev/null
+  echo "$name Was Annihilated"
+}
+
+function kube_expose_deployment() {
+  local name="$1"
+  local port="{3:-80}"
+  kubectl expose deployment "$name" --port="$port" --type=NodePort
+  echo "$name was exposed on port $port"
+}
+
+
+
+
+
+
+
+
+
+
+
