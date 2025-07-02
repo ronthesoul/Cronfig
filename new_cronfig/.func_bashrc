@@ -202,8 +202,23 @@ echo "#####################Deployment info###################"
 kubectl get deployment -o wide
 }
 
+synconfig() {
+    read -p "Are you sure you want to sync your cronfig with cloud? [y/N] " user_warning
 
-
+    case "$user_warning" in
+        y|Y|yes|Yes|YES)
+            curl -o ~/.alias_bashrc https://raw.githubusercontent.com/ronthesoul/Cronfig/main/new_cronfig/.alias_bashrc
+            curl -o ~/.func_bashrc https://raw.githubusercontent.com/ronthesoul/Cronfig/main/new_cronfig/.func_bashrc
+            source ~/.bashrc
+            ;;
+        n|N|no|No|NO)
+            return 1
+            ;;
+        *)
+            echo "Invalid option."
+            ;;
+    esac
+}
 
 
 
