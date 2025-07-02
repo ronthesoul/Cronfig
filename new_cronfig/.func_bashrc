@@ -192,7 +192,7 @@ function kube_expose_deployment() {
 }
 
 function kall() {
-echo "#####################Pods info#########################"
+echo "#####################Pods info#########################"   #Test
 kubectl get pod -o wide
 echo "#####################Nodes info########################"
 kubectl get node -o wide
