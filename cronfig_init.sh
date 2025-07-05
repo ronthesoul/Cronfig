@@ -5,6 +5,7 @@
 #Date: 24.2.2025
 #Version: 0.0.9
 ##########################################
+color_input=${1:-1}"
 
 cat << 'EOF' 
 ####################################################################
@@ -108,6 +109,7 @@ colorscheme molokai
 EOF
 
 #Changing background color
+if [[ "$color_input" == "1" ]]; then
 git clone https://github.com/chriskempson/base16-shell.git ~/.base16config/base16-shell
 
 cat << 'EOF' >> ~/.bashrc
@@ -120,7 +122,7 @@ BASE16_SHELL="$HOME/.base16config/base16-shell/"
 EOF
 chmod +x ~/.base16config/base16-shell/scripts/base16-default-dark.sh
 echo 'source ~/.base16config/base16-shell/scripts/base16-default-dark.sh' >> ~/.bashrc
-
+fi
 
 curl -o ~/.alias_bashrc https://raw.githubusercontent.com/ronthesoul/Cronfig/main/new_cronfig/.alias_bashrc
 curl -o ~/.func_bashrc https://raw.githubusercontent.com/ronthesoul/Cronfig/main/new_cronfig/.func_bashrc
