@@ -1,6 +1,10 @@
 name: Test cronfig to see it has syntax errors
 
-on: [push]
+on:
+  push:
+    paths:
+      - "./cronfig_init.sh"
+      - "new_cronfig/*"
 
 jobs:
   build:
