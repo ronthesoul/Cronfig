@@ -65,7 +65,7 @@ source <(kubectl completion bash)
 
 
 
-#Misc
+##Misc
 #Example:
 #echo "${DARK_RED}Dark red text${NO_COLOR}"
 #echo "${BOLD}${UNDERLINE}Important:${NO_COLOR} Read this carefully."
