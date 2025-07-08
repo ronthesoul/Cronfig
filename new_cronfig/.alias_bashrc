@@ -57,3 +57,31 @@ alias kdf='kubectl delete -f'
 alias kgde='kubectl get deployment -o wide'
 alias kgns='kubectl get namespace -o wides'
 source <(kubectl completion bash)
+
+
+
+
+
+#Misc
+#Example:
+#echo "${DARK_RED}Dark red text${NO_COLOR}"
+#echo "${BOLD}${UNDERLINE}Important:${NO_COLOR} Read this carefully."
+#echo "Loading..."
+#sleep 1
+#echo -e "${CLEAR_LAST_MSG}Done."
+readonly BOLD="$(tput bold 2>/dev/null || echo '')"
+readonly GREY="$(tput setaf 8 2>/dev/null || echo '')"
+readonly UNDERLINE="$(tput smul 2>/dev/null || echo '')"
+readonly RED="$(tput setaf 1 2>/dev/null || echo '')"
+readonly GREEN="$(tput setaf 2 2>/dev/null || echo '')"
+readonly YELLOW="$(tput setaf 3 2>/dev/null || echo '')"
+readonly BLUE="$(tput setaf 4 2>/dev/null || echo '')"
+readonly MAGENTA="$(tput setaf 5 2>/dev/null || echo '')"
+readonly CYAN="$(tput setaf 6 2>/dev/null || echo '')"
+readonly NO_COLOR="$(tput sgr0 2>/dev/null || echo '')"
+readonly DARK_RED="$(tput setaf 52 2>/dev/null || echo '')"     
+readonly ORANGE="$(tput setaf 208 2>/dev/null || echo '')"      
+readonly LIGHT_GREY="$(tput setaf 250 2>/dev/null || echo '')"  
+readonly DARK_GREY="$(tput setaf 238 2>/dev/null || echo '')"   
+readonly PINK="$(tput setaf 213 2>/dev/null || echo '')"        
+readonly CLEAR_LAST_MSG="\033[1F\033[0K"
