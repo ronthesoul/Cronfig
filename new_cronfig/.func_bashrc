@@ -206,6 +206,12 @@ function kpw() {
 kubectl port-forward $1 $2 --request-timeout='0' 2>&1 >/dev/null &
 }
 
+function kenter() {
+  local pod="$1"
+  [ -z "$pod" ] && echo "Usage: kenter <pod-name>" && return 1
+  kubectl exec -it "$pod" -- /bin/bash || kubectl exec -it "$pod" -- /bin/sh
+}
+
 
 
 
