@@ -202,6 +202,12 @@ echo "#####################Deployment info###################"
 kubectl get deployment -o wide
 }
 
+function kpw() {
+kubectl port-forward $1 $2 --request-timeout='0' 2>&1 >/dev/null &
+}
+
+
+
 
 
 
