@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-#########################################
+##########################################
 #Developed by: Ron Negrov
 #Purpose: A script that adds all my required features to bashrc
 #Date: 24.2.2025
