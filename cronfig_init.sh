@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
-##########################################
+#########################################
 #Developed by: Ron Negrov
 #Purpose: A script that adds all my required features to bashrc
 #Date: 24.2.2025
 #Version: 0.0.9
-##########################################
+#########################################
 color_input=${1:-1}
 
 cat << 'EOF' 
