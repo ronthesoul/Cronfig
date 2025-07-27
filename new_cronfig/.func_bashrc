@@ -35,9 +35,9 @@ fi
 docker run -it \
   --rm \
   --cap-drop=ALL \
-  --security-opt=no-new-privileges \
   --read-only \
   --network none \
+  --security-opt=no-new-privileges \
   -v $malware_volume:/malware:ro \
   $1
 }
@@ -213,7 +213,20 @@ function kenter() {
 }
 
 
+logv2() {
+  local level="$1"
+  shift
+  local msg="$*"
+  echo "[$(date '+%Y-%m-%d %H:%M:%S')] [$level] $msg" | tee -a "$LOGFILE"
 
+  case "$level" in
+    success) success "$msg" ;;
+    warn)    warn "$msg" ;;
+    error)   error "$msg" ;;
+    info)    info "$msg" ;;
+    *)       echo "$msg" ;;
+  esac
+}
 
 
 
