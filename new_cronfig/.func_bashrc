@@ -228,6 +228,22 @@ logv2() {
   esac
 }
 
+#Helm
+function hmre () {
+  helmname=$1
+  helmdir=${2:-$1}
+  helm uninstall "$helmname" && helm install "$helmname" "$helmdir" || \
+  echo "Restarting helm chart failed. Please check your values."
+}
+
+
+
+
+
+
+
+
+
 
 
 

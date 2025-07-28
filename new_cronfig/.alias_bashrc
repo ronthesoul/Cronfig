@@ -53,7 +53,7 @@ alias k='kubectl'
 alias kg='kubectl get'
 alias kc='kubectl create'
 alias kgpo='kubectl get pod -o wide'
-alias kd='kubectl describe'
+alias kdes='kubectl describe'
 alias kdpo='kubectl describe pod'
 alias kdel='kubectl delete'
 alias kdelpo='kubectl delete pod'
@@ -65,7 +65,11 @@ alias kgde='kubectl get deployment -o wide'
 alias kpwkill='pkill -f "kubectl port-forward"'
 source <(kubectl completion bash)
 
-
+#Helm
+alias hmls='helm list -A'
+alias hmun='helm uninstall'
+alias hmi='helm install'
+alias hmu='helm upgrade'
 
 
 
