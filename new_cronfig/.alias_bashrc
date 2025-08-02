@@ -72,6 +72,19 @@ alias hmi='helm install'
 alias hmu='helm upgrade'
 
 
+#Tago
+alias tals='tago list'
+alias talsa='tago list -a'
+alias talsc='tago list -c'
+alias taru='tago run'
+alias tadd='tago add'
+alias trem='tago remove'
+alias tacl='tago clean'
+alias tado='tago done'
+
+
+
+
 
 ##Misc
 #Example:

@@ -4,6 +4,11 @@ cd $1
 ls
 }
 
+function zl(){
+z $1
+ls
+}
+
 function brcs () { 
     local backup_dir="$HOME/.bashrc_backup"
     mkdir -p "$backup_dir" >/dev/null 2>&1
@@ -105,6 +110,12 @@ function delete_gh_repo() {
   gh api --method DELETE "repos/$owner/$repo_name"
   echo "[INFO] Repository deleted: $owner/$repo_name"
 }
+
+function gall() {
+  commit="${1:-New Commit}"
+  git add -A && git commit -a -m "$commit" && git push origin main
+}
+
 
 
 function change_repo (){
