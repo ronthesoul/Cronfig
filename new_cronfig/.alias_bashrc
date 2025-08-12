@@ -1,3 +1,4 @@
+
 #!/bin/bash
 alias drad='docker rm '
 alias drld='docker ps -a -q -f status=exited'
@@ -111,4 +112,3 @@ readonly DARK_GREY="$(tput setaf 238 2>/dev/null || echo '')"
 readonly PINK="$(tput setaf 213 2>/dev/null || echo '')"        
 readonly CLEAR_LAST_MSG="\033[1F\033[0K"
 
-###
